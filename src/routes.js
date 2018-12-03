@@ -29,7 +29,7 @@ route.delete('/products', productController.delete);
 
 route.post('/users', userController.post);
 route.get('/users', userController.get);
-route.delete('/users', userController.delete);
+route.delete('/users/:id', userController.delete);
 
 route.post('/orders', orderController.post);
 route.get('/orders', orderController.get);

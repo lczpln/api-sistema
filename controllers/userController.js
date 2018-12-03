@@ -26,9 +26,9 @@ exports.get = async (req, res, next) => {
 };
 
 exports.delete = async (req, res, next) => {
-    const target = req.body.email;
+    const target = req.params.id;
     try {
-        const response = await User.findOneAndDelete({ email: target })
+        const response = await User.findOneAndDelete({ _id: target })
 
         if (!response) throw new Error('Usuário não encontrado.');
 
