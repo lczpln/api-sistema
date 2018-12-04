@@ -1,10 +1,13 @@
 const express = require('express');
 const route = express.Router();
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const productController = require('../controllers/productController');
 const userController = require('../controllers/userController');
 const orderController = require('../controllers/orderController');
+
+route.use(cors());
 
 route.use(bodyParser.json());
 route.use(bodyParser.urlencoded({ extended: false }));
