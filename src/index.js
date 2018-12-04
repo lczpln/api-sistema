@@ -6,6 +6,7 @@ const routes = require('./routes');
 
 // Express
 const app = express();
+app.use(cors({credentials: true}));
 
 // Socket.io
 const server = require('http').Server(app);
