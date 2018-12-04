@@ -25,7 +25,7 @@ route.get('/', (req, res) => {
 
 route.post('/products', productController.post);
 route.get('/products', productController.get);
-route.delete('/products', productController.delete);
+route.delete('/products/:id', productController.delete);
 
 route.post('/users', userController.post);
 route.get('/users', userController.get);
