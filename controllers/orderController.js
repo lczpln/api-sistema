@@ -12,7 +12,9 @@ exports.post = async (req, res, next) => {
 
         if (!response) throw new Error('Erro ao cadastrar pedido.');
 
-        res.status(201).send({ message: 'Pedido cadastrado com sucesso!' });
+        req.io.emit('order', response);
+
+        return res.status(201).send({ message: 'Pedido cadastrado com sucesso!' });
 
     } catch (e) {
         res.status(500).send({ message: 'Erro ao cadastrar pedido => ' + e })

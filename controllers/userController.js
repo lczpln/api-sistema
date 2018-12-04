@@ -7,7 +7,9 @@ exports.post = async (req, res, next) => {
 
         if (!response) throw new Error('Erro ao cadastrar cliente');
 
-        res.status(201).send({ message: 'Usuário criado com sucesso!' });
+        req.io.emit('user', response);
+
+        return res.status(201).send({ message: 'Usuário criado com sucesso!' });
 
     } catch (e) {
         res.status(500).send({ message: 'Erro ao cadastrar cliente => ' + e });
@@ -16,7 +18,7 @@ exports.post = async (req, res, next) => {
 
 exports.get = async (req, res, next) => {
     try {
-        const response = await User.find({});
+        const response = await User.find({}).sort('-createdAt');
 
         res.status(200).send(response);
 
