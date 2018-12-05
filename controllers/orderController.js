@@ -17,7 +17,7 @@ exports.post = async (req, res, next) => {
         return res.status(201).send({ message: 'Pedido cadastrado com sucesso!' });
 
     } catch (e) {
-        res.status(500).send({ message: 'Erro ao cadastrar pedido => ' + e })
+        return res.status(500).send({ message: 'Erro ao cadastrar pedido => ' + e })
     }
 }
 
@@ -29,9 +29,9 @@ exports.get = async (req, res, next) => {
 
         if (!response) throw new Error('Erro na requisição de pedidos.');
 
-        res.status(200).send(response);
+        return res.status(200).send(response);
 
     } catch (e) {
-        res.status(500).send({ message: 'Falha na requisição => ' + e })
+        return res.status(500).send({ message: 'Falha na requisição => ' + e })
     }
 }

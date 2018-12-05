@@ -1,11 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
-// Importa as rotas
-const routes = require('./routes');
+const cors = require('cors');
 
 // Express
 const app = express();
+
+// Cors
+const configCors = {
+    origin: true,
+    methods: ['GET', 'POST', 'DELETE', 'PUT'],
+    credentials: true,
+    maxAge: 3600
+}
+
+app.use(cors(configCors));
+
 
 // Socket.io
 const server = require('http').Server(app);
@@ -21,6 +30,7 @@ app.use((req, res, next) => {
 });
 
 //Carrega as rotas
+const routes = require('./routes');
 app.use(routes);
 
 //Porta randomica

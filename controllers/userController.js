@@ -20,10 +20,10 @@ exports.get = async (req, res, next) => {
     try {
         const response = await User.find({}).sort('-createdAt');
 
-        res.status(200).send(response);
+        return res.status(200).send(response);
 
     } catch (e) {
-        res.status(500).send({ message: 'Falha na requisição => ' + e });
+        return res.status(500).send({ message: 'Falha na requisição => ' + e });
     }
 };
 

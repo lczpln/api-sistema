@@ -1,23 +1,13 @@
 const express = require('express');
 const route = express.Router();
 const bodyParser = require('body-parser');
-const cors = require('cors');
 
 const productController = require('../controllers/productController');
 const userController = require('../controllers/userController');
 const orderController = require('../controllers/orderController');
 
-route.use(cors());
-
 route.use(bodyParser.json());
 route.use(bodyParser.urlencoded({ extended: false }));
-
-route.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    next();
-})
 
 route.get('/', (req, res) => {
     res.status(200).send({
