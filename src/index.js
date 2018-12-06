@@ -2,18 +2,18 @@ const express = require('express');
 const http = require('http');
 const cors = require('cors');
 const app = express();
+const server = http.createServer(app);
 
 // Cors
 const configCors = {
-    origin: false,
+    origin: true,
     methods: ['GET', 'POST', 'DELETE', 'PUT'],
-    credentials: false,
+    credentials: true,
     maxAge: 3600
 }
 
-app.use(cors(configCors));
+server.use(cors(configCors));
 
-const server = http.createServer(app);
 const io = require('socket.io').listen(server);
 
 // Conecta ao banco de dados
@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 
 //Carrega as rotas
 const routes = require('./routes');
-app.use(routes);
+server.use(routes);
 
 //Normalizar porta
 var porta = process.env.PORT || 3000;
