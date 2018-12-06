@@ -1,9 +1,7 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
-
-// Express
 const app = express();
+const mongoose = require('mongoose');
 
 // Cors
 const configCors = {
@@ -13,11 +11,11 @@ const configCors = {
     maxAge: 3600
 }
 
+app.use(cors(configCors));
+
 // Socket.io
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
-
-app.use(cors(configCors));
 
 // Conecta ao banco de dados
 mongoose.connect('mongodb://site:site123@ds041167.mlab.com:41167/site-backend', { useNewUrlParser: true });
@@ -32,7 +30,7 @@ app.use((req, res, next) => {
 const routes = require('./routes');
 app.use(routes);
 
-//Porta randomica
+//Normalizar porta
 var porta = process.env.PORT || 3000;
 
 //Ouve a porta 
