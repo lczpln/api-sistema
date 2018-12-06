@@ -13,12 +13,11 @@ const configCors = {
     maxAge: 3600
 }
 
-app.use(cors(configCors));
-
-
 // Socket.io
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+
+app.use(cors(configCors));
 
 // Conecta ao banco de dados
 mongoose.connect('mongodb://site:site123@ds041167.mlab.com:41167/site-backend', { useNewUrlParser: true });
@@ -37,7 +36,7 @@ app.use(routes);
 var porta = process.env.PORT || 3000;
 
 //Ouve a porta 
-app.listen(porta, () => {
+server.listen(porta, () => {
     console.log("Server listening on port " + porta + " (:");
 })
 

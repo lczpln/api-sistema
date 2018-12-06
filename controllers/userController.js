@@ -7,7 +7,7 @@ exports.post = async (req, res, next) => {
 
         if (!response) throw new Error('Erro ao cadastrar cliente');
 
-        req.io.emit('user', response);
+        req.io.emit('userAdd', response);
 
         return res.status(201).send({ message: 'Usuário criado com sucesso!' });
 
@@ -34,9 +34,14 @@ exports.delete = async (req, res, next) => {
 
         if (!response) throw new Error('Usuário não encontrado.');
 
-        res.status(200).send({ message: "Usuário excluido com sucesso!" });
+        const data = await User.find({}).sort('-createdAt');
+
+        req.io.emit('userDel', data)
+
+        return res.status(200).send({ message: "Usuário excluido com sucesso!" });
+
     } catch (e) {
-        res.status(500).send({ message: "Falha ao excluir cliente => " + e })
+        return res.status(500).send({ message: "Falha ao excluir cliente => " + e })
     }
 
 };
