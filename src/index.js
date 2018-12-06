@@ -16,16 +16,6 @@ app.use(cors(configCors));
 const server = http.createServer(app);
 const io = require('socket.io').listen(server);
 
-// Cors
-const configCors = {
-    origin: true,
-    methods: ['GET', 'POST', 'DELETE', 'PUT'],
-    credentials: true,
-    maxAge: 3600
-}
-
-app.use(cors(configCors));
-
 // Conecta ao banco de dados
 mongoose.connect('mongodb://site:site123@ds041167.mlab.com:41167/site-backend', { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
