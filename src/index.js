@@ -15,12 +15,13 @@ const configCors = {
 server.use(cors(configCors));
 
 const io = require('socket.io').listen(server);
+io.origins('*:*');
 
 // Conecta ao banco de dados
 mongoose.connect('mongodb://site:site123@ds041167.mlab.com:41167/site-backend', { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
-app.use((req, res, next) => {
+server.use((req, res, next) => {
     req.io = io;
     return next();
 });
