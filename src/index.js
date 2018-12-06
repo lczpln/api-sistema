@@ -5,9 +5,9 @@ const app = express();
 
 // Cors
 const configCors = {
-    origin: true,
+    origin: false,
     methods: ['GET', 'POST', 'DELETE', 'PUT'],
-    credentials: true,
+    credentials: false,
     maxAge: 3600
 }
 
