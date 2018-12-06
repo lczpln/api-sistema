@@ -2,6 +2,17 @@ const express = require('express');
 const http = require('http');
 const cors = require('cors');
 const app = express();
+
+// Cors
+const configCors = {
+    origin: true,
+    methods: ['GET', 'POST', 'DELETE', 'PUT'],
+    credentials: true,
+    maxAge: 3600
+}
+
+app.use(cors(configCors));
+
 const server = http.createServer(app);
 const io = require('socket.io').listen(server);
 
