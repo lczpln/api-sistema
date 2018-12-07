@@ -1,5 +1,5 @@
 const express = require('express');
-const http = require('http');
+const https = require('https');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
@@ -17,7 +17,7 @@ const configCors = {
 app.use(cors(configCors));
 
 // Socket.io
-const server = http.createServer(app);
+const server = https.createServer(app);
 const io = require('socket.io').listen(server);
 
 // Conecta ao banco de dados
