@@ -1,7 +1,9 @@
 const express = require('express');
-const cors = require('cors');
-const app = express();
 const mongoose = require('mongoose');
+const cors = require('cors');
+
+// Express
+const app = express();
 
 // Cors
 const configCors = {
@@ -14,7 +16,6 @@ const configCors = {
 // Socket.io
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
-io.origins("*:*");
 
 app.use(cors(configCors));
 
@@ -31,7 +32,7 @@ app.use((req, res, next) => {
 const routes = require('./routes');
 app.use(routes);
 
-//Normalizar porta
+//Porta randomica
 var porta = process.env.PORT || 3000;
 
 //Ouve a porta 
