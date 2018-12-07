@@ -14,8 +14,8 @@ const configCors = {
 }
 
 // Socket.io
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const server = require('http').createServer(app);
+const io = require('socket.io').listen(server);
 
 app.use(cors(configCors));
 
@@ -33,11 +33,11 @@ const routes = require('./routes');
 app.use(routes);
 
 //Porta randomica
-var porta = process.env.PORT || 3000;
+var port = process.env.PORT || 3000;
 
 //Ouve a porta 
 server.listen(porta, () => {
-    console.log("Server listening on port " + porta + " (:");
+    console.log("Server listening on port " + port + " (:");
 })
 
 module.exports = app;
