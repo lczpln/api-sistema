@@ -34,7 +34,7 @@ const routes = require('./routes');
 app.use(routes);
 
 //Porta randomica
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 4894;
 
 //Ouve a porta 
 server.listen(port, () => {
