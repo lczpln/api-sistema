@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express();
 
 // Socket.io
-const server = require('https').Server(app);
+const server = require('http').Server(app);
 const io = require('socket.io')(server);
 io.origins("*:*");
 
