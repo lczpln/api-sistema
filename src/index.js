@@ -36,7 +36,7 @@ app.use(routes);
 var port = process.env.PORT || 3000;
 
 //Ouve a porta 
-server.listen(porta, () => {
+server.listen(port, () => {
     console.log("Server listening on port " + port + " (:");
 })
 
