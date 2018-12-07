@@ -1,4 +1,5 @@
 const express = require('express');
+const http = require('http');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
@@ -13,11 +14,11 @@ const configCors = {
     maxAge: 3600
 }
 
-// Socket.io
-const server = require('http').createServer(app);
-const io = require('socket.io').listen(server);
-
 app.use(cors(configCors));
+
+// Socket.io
+const server = http.createServer(app);
+const io = require('socket.io').listen(server);
 
 // Conecta ao banco de dados
 mongoose.connect('mongodb://site:site123@ds041167.mlab.com:41167/site-backend', { useNewUrlParser: true });
