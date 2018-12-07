@@ -1,7 +1,14 @@
 const express = require('express');
-const cors = require('cors');
-const app = express();
 const mongoose = require('mongoose');
+const cors = require('cors');
+
+// Express
+const app = express();
+
+// Socket.io
+const server = require('https').Server(app);
+const io = require('socket.io')(server);
+io.origins("*:*");
 
 // Cors
 const configCors = {
@@ -10,11 +17,6 @@ const configCors = {
     credentials: true,
     maxAge: 3600
 }
-
-// Socket.io
-const server = require('https').Server(app);
-const io = require('socket.io')(server);
-io.origins("*:*");
 
 app.use(cors(configCors));
 
@@ -31,12 +33,12 @@ app.use((req, res, next) => {
 const routes = require('./routes');
 app.use(routes);
 
-//Normalizar porta
-var porta = process.env.PORT || 3000;
+//Porta randomica
+var port = process.env.PORT || 3000;
 
 //Ouve a porta 
-server.listen(porta, () => {
-    console.log("Server listening on port " + porta + " (:");
+server.listen(port, () => {
+    console.log("Server listening on port " + port + " (:");
 })
 
 module.exports = app;
